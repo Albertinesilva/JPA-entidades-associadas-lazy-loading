@@ -21,23 +21,23 @@ public class PersonController {
   @Autowired
   private PersonService personService;
 
-  // @PostMapping
+  @PostMapping
   public ResponseEntity<PersonDepartmentDTO> insert(@RequestBody PersonDepartmentDTO dto) {
-    PersonDepartmentDTO person = personService.insert(dto);
+    dto = personService.insert(dto);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
         .path("/{id}")
-        .buildAndExpand(person.getId())
+        .buildAndExpand(dto.getId())
         .toUri();
-    return ResponseEntity.created(uri).body(person);
+    return ResponseEntity.created(uri).body(dto);
   }
 
-  @PostMapping
+  // @PostMapping
   public ResponseEntity<PersonDTO> insert(@RequestBody PersonDTO dto) {
-    PersonDTO person = personService.insert(dto);
+    dto = personService.insert(dto);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
         .path("/{id}")
-        .buildAndExpand(person.getId())
+        .buildAndExpand(dto.getId())
         .toUri();
-    return ResponseEntity.created(uri).body(person);
+    return ResponseEntity.created(uri).body(dto);
   }
 }
